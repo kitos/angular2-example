@@ -1,4 +1,8 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
+import {Store} from '@ngrx/store';
+import {Observable} from "rxjs";
+
+import {INCREMENT, DECREMENT} from "./component.reducer";
 
 @Component({
   selector: 'app-root',
@@ -6,5 +10,18 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'app works!';
+  title = 'Redux is awesome!';
+  counter: Observable<number>;
+
+  constructor(private store: Store<any>) {
+    this.counter = store.select<number>('counter');
+  }
+
+  increment() {
+    this.store.dispatch({type: INCREMENT});
+  }
+
+  decrement() {
+    this.store.dispatch({type: DECREMENT});
+  }
 }

@@ -1,3 +1,9 @@
 <h1>
   {{title}}
 </h1>
+<main>
+  <span>{{counter | async}}</span>
+  <br>
+  <button (click)="increment()">+</button>
+  <button (click)="decrement()">-</button>
+</main>
